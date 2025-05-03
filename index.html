@@ -270,6 +270,23 @@
             <p class="copyright">© 2023 Flanelinha Tecnologia. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+       <!--  botão flutuante  -->
+       <button class="qr-code-btn" id="showQrBtn">
+        <i class="fas fa-qrcode"></i>
+    </button>
+
+   
+    <div class="qr-code-container" id="qrCodeContainer">
+        <div class="qr-code-content">
+            <button class="close-qr" id="closeQrBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3>Nosso QR Code</h3>
+            <img src="src/img/qrcode.png" alt="QR Code" class="qr-code-img">
+            <p>Escaneie para mais informações</p>
+        </div>
+    </div>
     
     <script>
         // Mobile Navigation
@@ -355,6 +372,30 @@
         
         // Run animations on scroll
         window.addEventListener('scroll', animateOnScroll);
+
+
+         // Adicione este novo script para controlar o QR Code
+         const showQrBtn = document.getElementById('showQrBtn');
+        const closeQrBtn = document.getElementById('closeQrBtn');
+        const qrCodeContainer = document.getElementById('qrCodeContainer');
+
+        showQrBtn.addEventListener('click', () => {
+            qrCodeContainer.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Impede o scroll quando o QR Code está aberto
+        });
+
+        closeQrBtn.addEventListener('click', () => {
+            qrCodeContainer.classList.remove('active');
+            document.body.style.overflow = ''; // Restaura o scroll
+        });
+
+        // Fechar o QR Code ao clicar fora do conteúdo
+        qrCodeContainer.addEventListener('click', (e) => {
+            if (e.target === qrCodeContainer) {
+                qrCodeContainer.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 </html>
